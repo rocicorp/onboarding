@@ -1,0 +1,16 @@
+{
+  "name": "tutorial-tanstack-drizzle",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter web dev",
+    "build": "bun --filter web build",
+    "db:studio": "bun --filter @tutorial-tanstack-drizzle/db studio"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3"
+  }
+}

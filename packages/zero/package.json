@@ -1,0 +1,22 @@
+{
+  "name": "@tutorial-tanstack-drizzle/zero",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./react": "./src/react.ts"
+  },
+  "scripts": {
+    "generate": "drizzle-zero generate -s ../db/src/drizzle.ts -o src/schema.ts -f --disable-legacy-queries --disable-legacy-mutators"
+  },
+  "dependencies": {
+    "@rocicorp/zero": "^0.25.0-canary.7",
+    "@tutorial-tanstack-drizzle/db": "workspace:*",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "drizzle-zero": "^0.16.2"
+  }
+}
