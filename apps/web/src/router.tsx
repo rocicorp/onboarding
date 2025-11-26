@@ -1,12 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
-import Home from "./Home";
+import { createRouter } from '@tanstack/react-router'
 
-// Define your routes
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-]);
+// Import the generated route tree
+import { routeTree } from './routeTree.gen'
 
-export default router;
+// Create a new router instance
+export const getRouter = () => {
+  const router = createRouter({
+    routeTree,
+    scrollRestoration: true,
+    defaultPreloadStaleTime: 0,
+  })
+
+  return router
+}

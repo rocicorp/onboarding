@@ -11,12 +11,16 @@
     "generate": "drizzle-zero generate -s ../db/src/drizzle.ts -o src/schema.ts -f --disable-legacy-queries --disable-legacy-mutators"
   },
   "dependencies": {
-    "@rocicorp/zero": "^0.25.0-canary.7",
+    "@rocicorp/zero": "0.25.0-canary.6",
     "@tutorial-tanstack-drizzle/db": "workspace:*",
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@rocicorp/zero-sqlite3": "^1.0.12",
     "@types/bun": "latest",
     "drizzle-zero": "^0.16.2"
-  }
+  },
+  "trustedDependencies": [
+    "@rocicorp/zero-sqlite3"
+  ]
 }
