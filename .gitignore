@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+out/
+.vite/
+*.tgz
+*.local
+
+# Logs
+logs/
+*.log
+
+# Testing & Coverage
+coverage/
+*.lcov
+
+# Caches
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+# Database (Drizzle)
+*.db
+*.db-shm
+*.db-wal
+*.db-wal2
+.drizzle/
+
+# Editor & IDE
+.vscode/
+.idea/
+.cursor/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
