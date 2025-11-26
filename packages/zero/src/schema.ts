@@ -11,6 +11,107 @@
 import type { Row } from "@rocicorp/zero";
 import { createBuilder } from "@rocicorp/zero";
 
+const albumsTable = {
+  name: "albums",
+  columns: {
+    id: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+    },
+    title: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+    },
+    artistId: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+      serverName: "artist_id",
+    },
+    releaseYear: {
+      type: "number",
+      optional: false,
+      customType: null as unknown as number,
+      serverName: "release_year",
+    },
+    coverArtUrl: {
+      type: "string",
+      optional: true,
+      customType: null as unknown as string,
+      serverName: "cover_art_url",
+    },
+    createdAt: {
+      type: "number",
+      optional: false,
+      customType: null as unknown as number,
+      serverName: "created_at",
+    },
+  },
+  primaryKey: ["id"],
+} as const;
+const artistsTable = {
+  name: "artists",
+  columns: {
+    id: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+    },
+    name: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+    },
+    genre: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+    },
+    bio: {
+      type: "string",
+      optional: true,
+      customType: null as unknown as string,
+    },
+    createdAt: {
+      type: "number",
+      optional: false,
+      customType: null as unknown as number,
+      serverName: "created_at",
+    },
+  },
+  primaryKey: ["id"],
+} as const;
+const favoritesTable = {
+  name: "favorites",
+  columns: {
+    id: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+    },
+    userId: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+      serverName: "user_id",
+    },
+    albumId: {
+      type: "string",
+      optional: false,
+      customType: null as unknown as string,
+      serverName: "album_id",
+    },
+    createdAt: {
+      type: "number",
+      optional: false,
+      customType: null as unknown as number,
+      serverName: "created_at",
+    },
+  },
+  primaryKey: ["id"],
+} as const;
 const usersTable = {
   name: "users",
   columns: {
@@ -38,15 +139,79 @@ const usersTable = {
   },
   primaryKey: ["id"],
 } as const;
+const albumsRelationships = {
+  artist: [
+    {
+      sourceField: ["artistId"],
+      destField: ["id"],
+      destSchema: "artists",
+      cardinality: "one",
+    },
+  ],
+  favorites: [
+    {
+      sourceField: ["id"],
+      destField: ["albumId"],
+      destSchema: "favorites",
+      cardinality: "many",
+    },
+  ],
+} as const;
+const artistsRelationships = {
+  albums: [
+    {
+      sourceField: ["id"],
+      destField: ["artistId"],
+      destSchema: "albums",
+      cardinality: "many",
+    },
+  ],
+} as const;
+const favoritesRelationships = {
+  user: [
+    {
+      sourceField: ["userId"],
+      destField: ["id"],
+      destSchema: "users",
+      cardinality: "one",
+    },
+  ],
+  album: [
+    {
+      sourceField: ["albumId"],
+      destField: ["id"],
+      destSchema: "albums",
+      cardinality: "one",
+    },
+  ],
+} as const;
+const usersRelationships = {
+  favorites: [
+    {
+      sourceField: ["id"],
+      destField: ["userId"],
+      destSchema: "favorites",
+      cardinality: "many",
+    },
+  ],
+} as const;
 /**
  * The Zero schema object.
  * This type is auto-generated from your Drizzle schema definition.
  */
 export const schema = {
   tables: {
+    albums: albumsTable,
+    artists: artistsTable,
+    favorites: favoritesTable,
     users: usersTable,
   },
-  relationships: {},
+  relationships: {
+    albums: albumsRelationships,
+    artists: artistsRelationships,
+    favorites: favoritesRelationships,
+    users: usersRelationships,
+  },
   enableLegacyQueries: false,
   enableLegacyMutators: false,
 } as const;
@@ -57,6 +222,21 @@ export const schema = {
  */
 export type Schema = typeof schema;
 /**
+ * Represents a row from the "albums" table.
+ * This type is auto-generated from your Drizzle schema definition.
+ */
+export type Album = Row<typeof albumsTable>;
+/**
+ * Represents a row from the "artists" table.
+ * This type is auto-generated from your Drizzle schema definition.
+ */
+export type Artist = Row<typeof artistsTable>;
+/**
+ * Represents a row from the "favorites" table.
+ * This type is auto-generated from your Drizzle schema definition.
+ */
+export type Favorite = Row<typeof favoritesTable>;
+/**
  * Represents a row from the "users" table.
  * This type is auto-generated from your Drizzle schema definition.
  */
@@ -66,4 +246,4 @@ export type User = Row<typeof usersTable>;
  * Represents the Zero schema query builder.
  * This type is auto-generated from your Drizzle schema definition.
  */
-export const builder = createBuilder(schema);
+export const zql = createBuilder(schema);
