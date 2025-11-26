@@ -2,7 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { ZeroProvider } from '@rocicorp/zero/react'
 
 import appCss from '../styles.css?url'
-import { createMutators, schema } from '@tutorial-tanstack-drizzle/zero'
+import { createMutators, schema } from '@zero-onboarding/zero'
 
 export const Route = createRootRoute({
   head: () => ({

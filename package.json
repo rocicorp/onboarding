@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "zero-onboarding",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -7,8 +7,7 @@
   ],
   "scripts": {
     "dev": "bun --filter web dev",
-    "build": "bun --filter web build",
-    "db:studio": "bun --filter @tutorial-tanstack-drizzle/db studio"
+    "build": "bun --filter web build"
   },
   "devDependencies": {
     "typescript": "~5.9.3"

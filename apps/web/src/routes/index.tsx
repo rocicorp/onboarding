@@ -1,6 +1,6 @@
 import { useQuery, useZero } from '@rocicorp/zero/react'
 import { createFileRoute } from '@tanstack/react-router'
-import { queries, Schema, Mutators } from '@tutorial-tanstack-drizzle/zero'
+import { queries, Schema, Mutators } from '@zero-onboarding/zero'
 
 export const Route = createFileRoute('/')({ component: App })
 
