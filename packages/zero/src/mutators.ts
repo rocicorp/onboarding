@@ -1,7 +1,7 @@
-import type { Transaction } from "@rocicorp/zero";
-import type { Schema } from "./schema";
-import type { CustomMutatorDefs } from "@rocicorp/zero";
-import type { Context } from "./context";
+import type {Transaction} from '@rocicorp/zero';
+import type {Schema} from './schema';
+import type {CustomMutatorDefs} from '@rocicorp/zero';
+import type {Context} from './context';
 
 export function createMutators(context: Context | undefined) {
   return {
@@ -14,7 +14,7 @@ export function createMutators(context: Context | undefined) {
           title: string;
           year: number;
           createdAt: number;
-        }
+        },
       ) => {
         await tx.mutate.albums.insert({
           id: data.id,

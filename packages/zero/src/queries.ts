@@ -1,17 +1,17 @@
-import { defineQuery } from "@rocicorp/zero";
-import { z } from "zod";
-import { zql } from "./schema";
+import {defineQuery} from '@rocicorp/zero';
+import {z} from 'zod';
+import {zql} from './schema';
 
 export const queries = {
   albumsByArtist: defineQuery(
-    "albumsByArtist",
+    'albumsByArtist',
     {
-      validator: z.object({ artistID: z.string() }),
+      validator: z.object({artistID: z.string()}),
     },
-    ({ args: { artistID } }) =>
+    ({args: {artistID}}) =>
       zql.albums
-        .where("artistId", artistID)
-        .orderBy("createdAt", "asc")
-        .limit(10)
+        .where('artistId', artistID)
+        .orderBy('createdAt', 'asc')
+        .limit(10),
   ),
 };

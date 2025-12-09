@@ -2,11 +2,7 @@ import { type ReadonlyJSONValue } from '@rocicorp/zero'
 import { handleMutationRequest, PushProcessor } from '@rocicorp/zero/server'
 import { createFileRoute } from '@tanstack/react-router'
 import { json } from '@tanstack/react-start'
-import {
-  createMutators,
-  queries,
-  schema,
-} from '@zero-onboarding/zero'
+import { createMutators, queries, schema } from '@zero-onboarding/zero'
 import { zeroDrizzle } from '@rocicorp/zero/server/adapters/drizzle'
 import { db } from '@zero-onboarding/db'
 
