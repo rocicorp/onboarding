@@ -1,5 +1,5 @@
 {
-  "name": "@tutorial-tanstack-drizzle/db",
+  "name": "@zero-onboarding/db",
   "module": "src/index.ts",
   "type": "module",
   "private": true,

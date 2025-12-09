@@ -1,24 +1,22 @@
 {
-  "name": "@tutorial-tanstack-drizzle/zero",
+  "name": "@zero-onboarding/zero",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
   "exports": {
-    ".": "./src/index.ts",
-    "./react": "./src/react.ts"
+    ".": "./src/index.ts"
   },
   "scripts": {
-    "generate": "drizzle-zero generate -s ../db/src/drizzle.ts -o src/schema.ts -f --disable-legacy-queries --disable-legacy-mutators"
+    "generate": "drizzle-zero generate -s ../db/src/drizzle.ts -o src/schema.ts -f"
   },
   "dependencies": {
-    "@rocicorp/zero": "0.25.0-canary.6",
-    "@tutorial-tanstack-drizzle/db": "workspace:*",
+    "@zero-onboarding/db": "workspace:*",
     "zod": "^4.1.12"
   },
   "devDependencies": {
     "@rocicorp/zero-sqlite3": "^1.0.12",
     "@types/bun": "latest",
-    "drizzle-zero": "^0.16.2"
+    "drizzle-zero": "^0.17.0-canary.1"
   },
   "trustedDependencies": [
     "@rocicorp/zero-sqlite3"

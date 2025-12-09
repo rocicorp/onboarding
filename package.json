@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "zero-onboarding",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -7,10 +7,13 @@
   ],
   "scripts": {
     "dev": "bun --filter web dev",
-    "build": "bun --filter web build",
-    "db:studio": "bun --filter @tutorial-tanstack-drizzle/db studio"
+    "build": "bun --filter web build"
   },
   "devDependencies": {
+    "@rocicorp/prettier-config": "^0.4.0",
+    "@rocicorp/zero": "0.25.0-canary.18",
+    "prettier": "^3.5.3",
     "typescript": "~5.9.3"
-  }
+  },
+  "prettier": "@rocicorp/prettier-config"
 }
