@@ -1,5 +1,2 @@
-import {defineQueries} from '@rocicorp/zero';
-
-export const queries = defineQueries({
-  // TODO: Implement queries
-});
+// @ts-expect-error - TODO: Implement queries
+export const queries = defineQueries({});

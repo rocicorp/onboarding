@@ -11,7 +11,6 @@
   },
   "devDependencies": {
     "@rocicorp/prettier-config": "^0.4.0",
-    "@rocicorp/zero": "0.25.0-canary.18",
     "prettier": "^3.7.4",
     "typescript": "~5.9.3"
   },
