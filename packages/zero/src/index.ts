@@ -1,4 +1,4 @@
 export * from './context';
-export * from './schema';
-export * from './queries';
 export * from './mutators';
+export * from './queries';
+export * from './schema';
