@@ -1,19 +1,35 @@
-import {type ReadonlyJSONValue} from '@rocicorp/zero';
-import {handleMutationRequest, PushProcessor} from '@rocicorp/zero/server';
 import {createFileRoute} from '@tanstack/react-router';
 import {json} from '@tanstack/react-start';
-import {createMutators, queries, schema} from '@zero-onboarding/zero';
-import {zeroDrizzle} from '@rocicorp/zero/server/adapters/drizzle';
-import {db} from '@zero-onboarding/db';
-
-const processor = new PushProcessor(zeroDrizzle(schema, db));
+import {handleMutateRequest} from '@rocicorp/zero/server';
+import {mutators} from '@zero-onboarding/zero';
+import {dbProvider} from '../../db-provider.ts';
+import {mustGetMutator} from '@rocicorp/zero';
 
 export const Route = createFileRoute('/api/mutate')({
   server: {
     handlers: {
       POST: async ({request}) => {
-        const result = await processor.process(
-          createMutators(undefined),
+        const result = await handleMutateRequest(
+          dbProvider,
+          async (transact, mutation) => {
+            // Run any external API validation/checks before the db tx.
+            // If you throw here, the mutation will be rejected.
+
+            const result = await transact(async tx => {
+              const mutator = mustGetMutator(mutators, mutation.name);
+              return mutator.fn({
+                args: mutation.args,
+                tx,
+                ctx: {userId: 'anon'},
+              });
+            });
+
+            // Run "fire and forget" work here, like sending
+            // notifications/analytics. If you throw here,
+            // it will be logged but won't change the mutation result.
+
+            return result;
+          },
           request,
         );
 

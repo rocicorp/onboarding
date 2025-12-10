@@ -8,97 +8,97 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import {Route as rootRouteImport} from './routes/__root';
-import {Route as IndexRouteImport} from './routes/index';
-import {Route as ApiQueriesRouteImport} from './routes/api/queries';
-import {Route as ApiMutateRouteImport} from './routes/api/mutate';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiQueryRouteImport } from './routes/api/query'
+import { Route as ApiMutateRouteImport } from './routes/api/mutate'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
-const ApiQueriesRoute = ApiQueriesRouteImport.update({
-  id: '/api/queries',
-  path: '/api/queries',
+} as any)
+const ApiQueryRoute = ApiQueryRouteImport.update({
+  id: '/api/query',
+  path: '/api/query',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const ApiMutateRoute = ApiMutateRouteImport.update({
   id: '/api/mutate',
   path: '/api/mutate',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/api/mutate': typeof ApiMutateRoute;
-  '/api/queries': typeof ApiQueriesRoute;
+  '/': typeof IndexRoute
+  '/api/mutate': typeof ApiMutateRoute
+  '/api/query': typeof ApiQueryRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/api/mutate': typeof ApiMutateRoute;
-  '/api/queries': typeof ApiQueriesRoute;
+  '/': typeof IndexRoute
+  '/api/mutate': typeof ApiMutateRoute
+  '/api/query': typeof ApiQueryRoute
 }
 export interface FileRoutesById {
-  '__root__': typeof rootRouteImport;
-  '/': typeof IndexRoute;
-  '/api/mutate': typeof ApiMutateRoute;
-  '/api/queries': typeof ApiQueriesRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/api/mutate': typeof ApiMutateRoute
+  '/api/query': typeof ApiQueryRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/api/mutate' | '/api/queries';
-  fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/api/mutate' | '/api/queries';
-  id: '__root__' | '/' | '/api/mutate' | '/api/queries';
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/api/mutate' | '/api/query'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/api/mutate' | '/api/query'
+  id: '__root__' | '/' | '/api/mutate' | '/api/query'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  ApiMutateRoute: typeof ApiMutateRoute;
-  ApiQueriesRoute: typeof ApiQueriesRoute;
+  IndexRoute: typeof IndexRoute
+  ApiMutateRoute: typeof ApiMutateRoute
+  ApiQueryRoute: typeof ApiQueryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    '/api/queries': {
-      id: '/api/queries';
-      path: '/api/queries';
-      fullPath: '/api/queries';
-      preLoaderRoute: typeof ApiQueriesRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/query': {
+      id: '/api/query'
+      path: '/api/query'
+      fullPath: '/api/query'
+      preLoaderRoute: typeof ApiQueryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/mutate': {
-      id: '/api/mutate';
-      path: '/api/mutate';
-      fullPath: '/api/mutate';
-      preLoaderRoute: typeof ApiMutateRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/api/mutate'
+      path: '/api/mutate'
+      fullPath: '/api/mutate'
+      preLoaderRoute: typeof ApiMutateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiMutateRoute: ApiMutateRoute,
-  ApiQueriesRoute: ApiQueriesRoute,
-};
+  ApiQueryRoute: ApiQueryRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
-import type {getRouter} from './router.tsx';
-import type {createStart} from '@tanstack/react-start';
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
 declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true;
-    router: Awaited<ReturnType<typeof getRouter>>;
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }
