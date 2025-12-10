@@ -6,23 +6,26 @@ export const Route = createFileRoute('/')({component: App});
 
 function App() {
   const zero = useZero();
-  const [albums] = useQuery(queries.albumsByArtist({artistID: 'artist_1'}));
-
-  const greatestId = albums.reduce(
-    (max, album) => Math.max(max, parseInt(album.id.split('_')[1])),
-    0,
-  );
+  const [albums] = useQuery(queries.albums.byArtist({artistID: 'artist_1'}));
 
   const onClick = async () => {
-    await zero.mutate(
+    const result = zero.mutate(
       mutators.albums.create({
-        id: `album_${greatestId + 1}`,
+        id: 'album_6',
         artistID: 'artist_1',
-        title: `Please Please Me (Greatest Hits ${greatestId + 1})`,
+        title: 'Please Please Me',
         year: 1963,
         createdAt: Date.now(),
       }),
     );
+
+    const clientResult = await result.client;
+
+    if (clientResult.type === 'error') {
+      console.error('Failed to create album', clientResult.error.message);
+    } else {
+      console.log('Album created!');
+    }
   };
 
   return (
