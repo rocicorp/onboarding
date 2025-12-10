@@ -5,3 +5,9 @@ export const contextSchema = z.object({
 });
 
 export type Context = z.infer<typeof contextSchema>;
+
+declare module '@rocicorp/zero' {
+  interface DefaultTypes {
+    context: Context;
+  }
+}

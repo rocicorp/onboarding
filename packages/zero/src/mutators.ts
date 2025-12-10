@@ -1,31 +1,28 @@
-import type {Transaction} from '@rocicorp/zero';
-import type {Schema} from './schema';
-import type {CustomMutatorDefs} from '@rocicorp/zero';
-import type {Context} from './context';
+import {defineMutator, defineMutators} from '@rocicorp/zero';
+import {z} from 'zod';
+import {crud} from './schema';
 
-export function createMutators(context: Context | undefined) {
-  return {
-    albums: {
-      create: async (
-        tx: Transaction<Schema>,
-        data: {
-          id: string;
-          artistID: string;
-          title: string;
-          year: number;
-          createdAt: number;
-        },
-      ) => {
-        await tx.mutate.albums.insert({
-          id: data.id,
-          artistId: data.artistID,
-          title: data.title,
-          releaseYear: data.year,
-          createdAt: data.createdAt,
-        });
+export const mutators = defineMutators({
+  albums: {
+    create: defineMutator(
+      z.object({
+        id: z.string(),
+        artistID: z.string(),
+        title: z.string(),
+        year: z.number(),
+        createdAt: z.number(),
+      }),
+      async ({args, tx, ctx: _ctx}) => {
+        await tx.mutate(
+          crud.albums.insert({
+            id: args.id,
+            artistId: args.artistID,
+            title: args.title,
+            releaseYear: args.year,
+            createdAt: args.createdAt,
+          }),
+        );
       },
-    },
-  } as const satisfies CustomMutatorDefs;
-}
-
-export type Mutators = ReturnType<typeof createMutators>;
+    ),
+  },
+});
