@@ -1,8 +1,7 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { ZeroProvider } from '@rocicorp/zero/react'
-
-import appCss from '../styles.css?url'
-import { createMutators, schema } from '@zero-onboarding/zero'
+import {HeadContent, Scripts, createRootRoute} from '@tanstack/react-router';
+import {ZeroProvider} from '@rocicorp/zero/react';
+import appCss from '../styles.css?url';
+import {mutators, schema} from '@zero-onboarding/zero';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,9 +26,9 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
-})
+});
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <head>
@@ -39,7 +38,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ZeroProvider
           server="http://localhost:4848"
           schema={schema}
-          mutators={createMutators(undefined)}
+          mutators={mutators}
           userID="anon"
         >
           {children}
@@ -47,5 +46,5 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }
