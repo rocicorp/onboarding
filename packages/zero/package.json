@@ -14,11 +14,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@rocicorp/zero-sqlite3": "^1.0.12",
     "@types/bun": "latest",
     "drizzle-zero": "^0.17.0-canary.1"
-  },
-  "trustedDependencies": [
-    "@rocicorp/zero-sqlite3"
-  ]
+  }
 }
