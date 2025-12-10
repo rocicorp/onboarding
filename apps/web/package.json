@@ -7,9 +7,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest run",
-    "lint": "eslint",
-    "format": "prettier --write .",
-    "check": "prettier --write . && eslint --fix"
+    "lint": "eslint"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.6",
