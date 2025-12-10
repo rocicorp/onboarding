@@ -7,9 +7,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest run",
-    "lint": "eslint",
-    "format": "prettier --write .",
-    "check": "prettier --write . && eslint --fix"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.6",
@@ -30,7 +28,6 @@
   },
   "devDependencies": {
     "@tanstack/devtools-vite": "^0.3.11",
-    "@tanstack/eslint-config": "^0.3.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
     "@types/node": "^22.10.2",
