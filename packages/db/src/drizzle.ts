@@ -1,5 +1,11 @@
-import {pgTable, text, timestamp, integer} from 'drizzle-orm/pg-core';
+import {pgTable, text, timestamp, integer, jsonb} from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
+
+export interface AlbumMetadata {
+  trackCount: number;
+  duration: number;
+  releaseDate: Date;
+}
 
 export const users = pgTable('users', {
   id: text('id').primaryKey(),
@@ -25,6 +31,7 @@ export const albums = pgTable('albums', {
   releaseYear: integer('release_year').notNull(),
   coverArtUrl: text('cover_art_url'),
   createdAt: timestamp('created_at').notNull(),
+  metadata: jsonb('metadata').$type<AlbumMetadata>().notNull(),
 });
 
 export const favorites = pgTable('favorites', {

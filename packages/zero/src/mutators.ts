@@ -18,6 +18,11 @@ export const mutators = defineMutators({
           title: args.title,
           releaseYear: args.year,
           createdAt: args.createdAt,
+          metadata: {
+            trackCount: 10,
+            duration: 3600,
+            releaseDate: new Date(args.year, 0, 1),
+          }
         });
       },
     ),
