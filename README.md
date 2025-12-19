@@ -5,8 +5,8 @@ This repo is a small, self-contained playground for the Zero [installation](http
 ## Branches
 
 - `0-start`: starting point (intentionally incomplete; you'll see `TODO`s).
-- `1-install`: end state after completing the installation guide ([view `1-install` on GitHub](../../tree/install), or `git switch 1-install`).
-- `2-deploy`: final state after adding Docker Compose ([view `2-deploy` on GitHub](../../tree/deploy), or `git switch 2-deploy`).
+- `1-install`: end state after completing the installation guide ([view `1-install` on GitHub](../../tree/1-install), or `git switch 1-install`).
+- `2-deploy`: final state after adding Docker Compose ([view `2-deploy` on GitHub](../../tree/2-deploy), or `git switch 2-deploy`).
 
 ## Repo tour
 
