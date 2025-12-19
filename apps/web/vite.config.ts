@@ -9,7 +9,7 @@ import {nitro} from 'nitro/vite';
 const config = defineConfig({
   plugins: [
     devtools(),
-    nitro(),
+    nitro({preset: 'bun'}),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
@@ -18,6 +18,15 @@ const config = defineConfig({
     tanstackStart(),
     viteReact(),
   ],
+  nitro: {},
+  build: {
+    rollupOptions: {
+      external: ['pg'],
+    },
+  },
+  ssr: {
+    external: ['pg'],
+  },
 });
 
 export default config;
