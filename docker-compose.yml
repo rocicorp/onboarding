@@ -1,11 +1,8 @@
-version: "3.9"
-
 services:
-  upstream_db:
+  upstream-db:
     image: postgres:18
     environment:
       POSTGRES_DB: zero
-      POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
       - 5432:5432
@@ -14,5 +11,5 @@ services:
       # automatically runs drizzle migrations in alphabetical order
       - ./packages/db/migrations:/docker-entrypoint-initdb.d
     healthcheck:
-      test: pg_isready -U user --dbname=postgres
+      test: pg_isready
       interval: 10s
