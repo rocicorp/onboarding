@@ -1,12 +1,11 @@
 # Onboarding
 
-This repo is a small, self-contained playground for the Zero [installation](https://zero.rocicorp.dev/docs/install) and [deploy](https://zero.rocicorp.dev/docs/deploy) guides. It’s meant for experimenting when wiring Zero into your own project would be too much work.
+This repo is a small, self-contained playground for the Zero [installation guide](https://zero.rocicorp.dev/docs/install). It’s meant for experimenting when wiring Zero into your own project would be too much work.
 
 ## Branches
 
-- `start`: starting point (intentionally incomplete; you'll see `TODO`s).
-- `install`: end state after completing the installation guide ([view `install` on GitHub](../../tree/install), or `git switch install`).
-- `deploy`: final state after adding Docker Compose ([view `deploy` on GitHub](../../tree/deploy), or `git switch deploy`).
+- `main`: starting point (intentionally incomplete; you'll see `TODO`s).
+- `maximal`: finished end state after completing the guide ([view on GitHub](../../tree/maximal), or `git switch maximal`).
 
 ## Repo tour
 
