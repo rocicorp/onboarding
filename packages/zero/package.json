@@ -6,15 +6,11 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "scripts": {
-    "generate": "drizzle-zero generate -s ../db/src/drizzle.ts -o src/schema.ts -f"
-  },
   "dependencies": {
     "@zero-onboarding/db": "workspace:*",
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "drizzle-zero": "^0.17.0"
+    "@types/bun": "latest"
   }
 }
