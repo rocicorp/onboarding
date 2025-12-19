@@ -1,0 +1,132 @@
+services:
+  upstream-db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: zero
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 5432:5432
+    command: postgres -c wal_level=logical
+    volumes:
+      # automatically runs drizzle migrations in alphabetical order
+      - ./packages/db/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: pg_isready
+      interval: 10s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - 3010:3000
+    environment:
+      # your API handles mutations and writes to the PG db
+      ZERO_UPSTREAM_DB: postgres://postgres:pass@upstream-db:5432/zero
+    depends_on:
+      upstream-db:
+        condition: service_healthy
+
+  # "Mini S3" (MinIO) provides a working s3://... `ZERO_LITESTREAM_BACKUP_URL`
+  # This should be an S3-compatible object storage service in production.
+  mini-s3:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./.docker/multi-node/mini-s3:/data
+    healthcheck:
+      test: curl -f http://localhost:9000/minio/health/live
+      interval: 5s
+
+  # Creates the bucket used by `ZERO_LITESTREAM_BACKUP_URL`
+  # This is only needed for local development.
+  mini-s3-create-bucket:
+    image: minio/mc:latest
+    depends_on:
+      mini-s3:
+        condition: service_healthy
+    entrypoint:
+      - sh
+      - -c
+      - mc alias set local http://mini-s3:9000 "minioadmin" "minioadmin" &&
+        mc mb -p local/zero-backups || true
+
+  replication-manager:
+    # use the replication-manager tag
+    image: rocicorp/zero:0.25.4
+    ports:
+      - 4849:4849
+    depends_on:
+      web:
+        condition: service_started
+      mini-s3-create-bucket:
+        condition: service_started
+    environment:
+      # used for replication from postgres
+      ZERO_UPSTREAM_DB: postgres://postgres:pass@upstream-db:5432/zero
+      # used for storing client view records
+      ZERO_CVR_DB: postgres://postgres:pass@upstream-db:5432/zero
+      # used for storing recent replication log entries
+      ZERO_CHANGE_DB: postgres://postgres:pass@upstream-db:5432/zero
+
+      # path to the SQLite replica
+      ZERO_REPLICA_FILE: /data/replica.db
+      # password used to access the inspector and /statz
+      ZERO_ADMIN_PASSWORD: pickanewpassword
+
+      # URL for backing up the SQLite replica
+      # (include a simple version number for future cleanup)
+      ZERO_LITESTREAM_BACKUP_URL: s3://zero-backups/replica-v1
+
+      # S3 creds + Mini S3 endpoint (view-syncers restore from backup on startup)
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      ZERO_LITESTREAM_ENDPOINT: http://mini-s3:9000
+    volumes:
+      # storage for the SQLite replica should be high IOPS
+      - ./.docker/multi-node/replication-manager:/data
+      # TODO remove once litestream config is fixed
+      - ./litestream.minio.yml:/etc/litestream.yml:ro
+    healthcheck:
+      test: curl -f http://localhost:4849/keepalive
+      interval: 5s
+
+  # only one view-syncer in this example, but there can be N
+  view-syncer:
+    image: rocicorp/zero:0.25.4
+    ports:
+      - 4848:4848
+    depends_on:
+      replication-manager:
+        condition: service_healthy
+    environment:
+      # used for replication from postgres
+      ZERO_UPSTREAM_DB: postgres://postgres:pass@upstream-db:5432/zero
+      # used for storing client view records
+      ZERO_CVR_DB: postgres://postgres:pass@upstream-db:5432/zero
+      # used for storing recent replication log entries
+      ZERO_CHANGE_DB: postgres://postgres:pass@upstream-db:5432/zero
+
+      # path to the SQLite replica
+      ZERO_REPLICA_FILE: /data/replica.db
+      # password used to access the inspector and /statz
+      ZERO_ADMIN_PASSWORD: pickanewpassword
+      # URLs for your API's query and mutate endpoints
+      ZERO_QUERY_URL: http://web:3000/api/query
+      ZERO_MUTATE_URL: http://web:3000/api/mutate
+
+      # URL for connecting to the replication-manager
+      ZERO_CHANGE_STREAMER_URI: http://replication-manager:4849
+
+      # S3 creds + Mini S3 endpoint (view-syncers restore from backup on startup)
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      ZERO_LITESTREAM_ENDPOINT: http://mini-s3:9000
+    volumes:
+      # storage for the SQLite replica should be high IOPS
+      - ./.docker/multi-node/view-syncer:/data
+      # TODO remove once litestream config is fixed
+      - ./litestream.minio.yml:/etc/litestream.yml:ro
+    healthcheck:
+      test: curl -f http://localhost:4848/keepalive
+      interval: 5s

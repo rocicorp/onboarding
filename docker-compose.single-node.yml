@@ -1,0 +1,54 @@
+services:
+  upstream-db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: zero
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 5432:5432
+    command: postgres -c wal_level=logical
+    volumes:
+      # automatically runs drizzle migrations in alphabetical order
+      - ./packages/db/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: pg_isready
+      interval: 10s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - 3010:3000
+    environment:
+      # your API handles mutations and writes to the PG db
+      ZERO_UPSTREAM_DB: postgres://postgres:pass@upstream-db:5432/zero
+    depends_on:
+      upstream-db:
+        condition: service_healthy
+
+  zero-cache:
+    image: rocicorp/zero:0.25.4
+    ports:
+      - 4848:4848
+    environment:
+      # used for replication from postgres
+      ZERO_UPSTREAM_DB: postgres://postgres:pass@upstream-db:5432/zero
+      # path to the SQLite replica
+      ZERO_REPLICA_FILE: /data/zero.db
+      # password used to access the inspector and /statz
+      ZERO_ADMIN_PASSWORD: pickanewpassword
+      # URLs for your API's query and mutate endpoints
+      ZERO_QUERY_URL: http://web:3000/api/query
+      ZERO_MUTATE_URL: http://web:3000/api/mutate
+    volumes:
+      # disk for the SQLite replica should be high IOPS
+      - ./.docker/single-node/zero-cache:/data
+    depends_on:
+      upstream-db:
+        condition: service_healthy
+      web:
+        condition: service_started
+    healthcheck:
+      test: curl -f http://localhost:4848/keepalive
+      interval: 5s
