@@ -10,6 +10,7 @@
     "build": "bun --filter @zero-onboarding/web build"
   },
   "dependencies": {
+    "@rocicorp/zero-sqlite3": "^1.0.13",
     "pg": "^8.16.3"
   },
   "devDependencies": {
@@ -21,5 +22,8 @@
   "prettier": "@rocicorp/prettier-config",
   "trustedDependencies": [
     "@rocicorp/zero-sqlite3"
-  ]
+  ],
+  "patchedDependencies": {
+    "@rocicorp/zero-sqlite3@1.0.13": "patches/@rocicorp%2Fzero-sqlite3@1.0.13.patch"
+  }
 }

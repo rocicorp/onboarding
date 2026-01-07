@@ -3,6 +3,7 @@ FROM oven/bun:1 AS builder
 WORKDIR /app
 
 COPY bun.lock package.json tsconfig.base.json ./
+COPY patches patches
 COPY apps/web/package.json apps/web/package.json
 COPY packages/db/package.json packages/db/package.json
 COPY packages/zero/package.json packages/zero/package.json

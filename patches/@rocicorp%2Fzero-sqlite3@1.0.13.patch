@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index d37c847d2e83c118e90ae046a5f9c7514fc5d114..c85430bf5bf35309bd3c3f8e18fe0d810e3a26f5 100644
+--- a/package.json
++++ b/package.json
+@@ -44,7 +44,7 @@
+     "sqlite3": "^5.1.6"
+   },
+   "scripts": {
+-    "install": "prebuild-install || node-gyp rebuild --release",
++    "install": "prebuild-install || node -e \"require('fs').existsSync('build/Release/better_sqlite3.node')||process.exit(1)\" || node-gyp rebuild --release",
+     "build-release": "node-gyp rebuild --release",
+     "build-debug": "node-gyp rebuild --debug",
+     "test": "mocha --exit --slow=75 --timeout=5000",
