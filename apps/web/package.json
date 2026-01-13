@@ -24,7 +24,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.0.6",
-    "vite-tsconfig-paths": "^6.0.4"
+    "vite-tsconfig-paths": "^6.0.4",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@tanstack/devtools-vite": "^0.4.1",

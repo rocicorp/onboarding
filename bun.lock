@@ -5,9 +5,9 @@
     "": {
       "name": "zero-onboarding",
       "devDependencies": {
-        "@rocicorp/prettier-config": "latest",
-        "prettier": "latest",
-        "typescript": "latest",
+        "@rocicorp/prettier-config": "^0.4.0",
+        "prettier": "^3.7.4",
+        "typescript": "~5.9.3",
       },
     },
     "apps/web": {
@@ -28,6 +28,7 @@
         "react-dom": "^19.2.0",
         "tailwindcss": "^4.0.6",
         "vite-tsconfig-paths": "^6.0.4",
+        "zod": "^4.3.5",
       },
       "devDependencies": {
         "@tanstack/devtools-vite": "^0.4.1",
