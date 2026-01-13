@@ -28,8 +28,8 @@ This repo is a small, self-contained playground for the Zero [installation](http
 Prereqs: Bun + Docker.
 
 - Install deps: `bun install`
-- In one terminal, start Postgres (includes schema + seed data): `cd packages/db && docker compose up`
-- In another terminal, start the web app: `cd apps/web && bun dev`
+- In one terminal, start Postgres (includes schema + seed data): `docker compose up`
+- In another terminal, start the web app: `bun dev`
 
 On `maximal`, also run the `zero-cache-dev` command from the Installation guide (the example app expects Zero at `http://localhost:4848`).
 
@@ -38,4 +38,4 @@ On `maximal`, also run the `zero-cache-dev` command from the Installation guide 
 If you want a working baseline to modify, start from `maximal`, then:
 
 - Edit `packages/db/src/drizzle.ts`
-- Re-generate the Zero schema: `cd packages/zero && bun run generate`
+- Re-generate the Zero schema: `bun run generate`
