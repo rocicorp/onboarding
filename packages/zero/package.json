@@ -10,7 +10,6 @@
     "dev": "bun --env-file=../../.env -- zero-cache-dev"
   },
   "dependencies": {
-    "@rocicorp/zero": "0.25.9",
     "@zero-onboarding/db": "workspace:*",
     "zod": "^4.1.12"
   },
