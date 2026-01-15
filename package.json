@@ -6,13 +6,14 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "bun --filter web dev",
-    "build": "bun --filter web build",
-    "generate": "bun --filter db generate"
+    "dev": "bun --env-file=.env --filter '*' dev",
+    "build": "bun --env-file=.env --filter '*' build",
+    "generate": "bun --env-file=.env --filter '*' generate",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@rocicorp/prettier-config": "^0.4.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "typescript": "~5.9.3"
   },
   "prettier": "@rocicorp/prettier-config"

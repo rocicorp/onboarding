@@ -18,15 +18,7 @@ const config = defineConfig({
     tanstackStart(),
     viteReact(),
   ],
-  nitro: {},
-  build: {
-    rollupOptions: {
-      external: ['pg'],
-    },
-  },
-  ssr: {
-    external: ['pg'],
-  },
+  envDir: '../../',
 });
 
 export default config;
