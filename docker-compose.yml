@@ -9,7 +9,7 @@ services:
     command: postgres -c wal_level=logical
     volumes:
       # automatically runs drizzle migrations in alphabetical order
-      - ./packages/db/migrations:/docker-entrypoint-initdb.d
+      - ./migrations:/docker-entrypoint-initdb.d
     healthcheck:
       test: pg_isready
       interval: 10s

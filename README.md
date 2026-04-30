@@ -17,7 +17,7 @@ This repo is a small, self-contained playground for the Zero [installation](http
 ### Key files
 
 - Drizzle schema: [packages/db/src/drizzle.ts](packages/db/src/drizzle.ts)
-- Seed data: [packages/db/migrations/1111_music_seed_data.sql](packages/db/migrations/1111_music_seed_data.sql)
+- Seed data: [./migrations/0000_seed_music.sql](migrations/0000_seed_music.sql)
 - Zero schema (generated on `maximal`): [packages/zero/src/schema.ts](packages/zero/src/schema.ts)
 - Queries + mutators: [packages/zero/src/queries.ts](packages/zero/src/queries.ts), [packages/zero/src/mutators.ts](packages/zero/src/mutators.ts)
 - Query/mutate endpoints: [apps/web/src/routes/api/query.ts](apps/web/src/routes/api/query.ts), [apps/web/src/routes/api/mutate.ts](apps/web/src/routes/api/mutate.ts)
