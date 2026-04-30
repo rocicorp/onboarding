@@ -10,20 +10,20 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "@tanstack/react-devtools": "^0.10.2",
-    "@tanstack/react-router": "^1.168.23",
+    "@tanstack/react-router": "^1.168.26",
     "@tanstack/react-router-devtools": "^1.166.13",
-    "@tanstack/react-router-ssr-query": "^1.166.11",
-    "@tanstack/react-start": "^1.167.44",
-    "@tanstack/router-plugin": "^1.167.23",
+    "@tanstack/react-router-ssr-query": "^1.166.12",
+    "@tanstack/react-start": "^1.167.52",
+    "@tanstack/router-plugin": "^1.167.29",
     "@zero-onboarding/db": "workspace:*",
     "@zero-onboarding/zero": "workspace:*",
-    "lucide-react": "^1.11.0",
-    "nitro": "3.0.260415-beta",
+    "lucide-react": "^1.14.0",
+    "nitro": "3.0.260429-beta",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "tailwindcss": "^4.2.4",
     "vite-tsconfig-paths": "^6.1.1",
-    "zod": "^4.3.6"
+    "zod": "^4.4.1"
   },
   "devDependencies": {
     "@tanstack/devtools-vite": "^0.6.0",
@@ -33,7 +33,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
-    "jsdom": "^29.0.2",
+    "jsdom": "^29.1.1",
     "typescript": "^6.0.3",
     "vite": "^8.0.10",
     "web-vitals": "^5.2.0"
