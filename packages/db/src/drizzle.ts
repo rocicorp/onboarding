@@ -1,7 +1,7 @@
-import {pgTable, text, timestamp, integer} from 'drizzle-orm/pg-core';
-import {relations} from 'drizzle-orm';
+import { relations } from 'drizzle-orm';
+import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
-export const users = pgTable('users', {
+export const fans = pgTable('fans', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
@@ -29,16 +29,16 @@ export const albums = pgTable('albums', {
 
 export const favorites = pgTable('favorites', {
   id: text('id').primaryKey(),
-  userId: text('user_id')
+  fanId: text('fan_id')
     .notNull()
-    .references(() => users.id),
+    .references(() => fans.id),
   albumId: text('album_id')
     .notNull()
     .references(() => albums.id),
   createdAt: timestamp('created_at').notNull(),
 });
 
-export const usersRelations = relations(users, ({many}) => ({
+export const fansRelations = relations(fans, ({many}) => ({
   favorites: many(favorites),
 }));
 
@@ -55,9 +55,9 @@ export const albumsRelations = relations(albums, ({one, many}) => ({
 }));
 
 export const favoritesRelations = relations(favorites, ({one}) => ({
-  user: one(users, {
-    fields: [favorites.userId],
-    references: [users.id],
+  fan: one(fans, {
+    fields: [favorites.fanId],
+    references: [fans.id],
   }),
   album: one(albums, {
     fields: [favorites.albumId],
