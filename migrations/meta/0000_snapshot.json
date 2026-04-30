@@ -51,12 +51,8 @@
           "name": "_z_albums_artist_id__z_artists_id_fk",
           "tableFrom": "_z_albums",
           "tableTo": "_z_artists",
-          "columnsFrom": [
-            "artist_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["artist_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -146,9 +142,7 @@
         "_z_fans_email_unique": {
           "name": "_z_fans_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -190,12 +184,8 @@
           "name": "_z_favorites_fan_id__z_fans_id_fk",
           "tableFrom": "_z_favorites",
           "tableTo": "_z_fans",
-          "columnsFrom": [
-            "fan_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["fan_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -203,12 +193,8 @@
           "name": "_z_favorites_album_id__z_albums_id_fk",
           "tableFrom": "_z_favorites",
           "tableTo": "_z_albums",
-          "columnsFrom": [
-            "album_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["album_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
