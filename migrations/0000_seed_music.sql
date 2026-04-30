@@ -64,4 +64,10 @@ INSERT INTO "_z_favorites" ("id", "fan_id", "album_id", "created_at") VALUES
 ('fav_3', 'fan_2', 'album_2', NOW()),
 ('fav_4', 'fan_2', 'album_3', NOW()),
 ('fav_5', 'fan_3', 'album_3', NOW()),
-('fav_6', 'fan_3', 'album_5', NOW());
+('fav_6', 'fan_3', 'album_5', NOW());--> statement-breakpoint
+
+-- Print a log message :)
+DO $$ 
+BEGIN 
+    RAISE NOTICE 'New _z_fans, _z_artists, _z_albums, and _z_favorites tables have been seeded with sample data. Happy syncing!';
+END $$;
