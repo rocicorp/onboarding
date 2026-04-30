@@ -1,11 +1,11 @@
 {
-  "id": "f36f7393-cc01-48f1-9a9a-0e07dcaca5bc",
+  "id": "d2360cd9-82f9-472c-a21d-59aff566f657",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.albums": {
-      "name": "albums",
+    "public._z_albums": {
+      "name": "_z_albums",
       "schema": "",
       "columns": {
         "id": {
@@ -47,10 +47,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "albums_artist_id_artists_id_fk": {
-          "name": "albums_artist_id_artists_id_fk",
-          "tableFrom": "albums",
-          "tableTo": "artists",
+        "_z_albums_artist_id__z_artists_id_fk": {
+          "name": "_z_albums_artist_id__z_artists_id_fk",
+          "tableFrom": "_z_albums",
+          "tableTo": "_z_artists",
           "columnsFrom": [
             "artist_id"
           ],
@@ -67,8 +67,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.artists": {
-      "name": "artists",
+    "public._z_artists": {
+      "name": "_z_artists",
       "schema": "",
       "columns": {
         "id": {
@@ -110,8 +110,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.fans": {
-      "name": "fans",
+    "public._z_fans": {
+      "name": "_z_fans",
       "schema": "",
       "columns": {
         "id": {
@@ -143,8 +143,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "fans_email_unique": {
-          "name": "fans_email_unique",
+        "_z_fans_email_unique": {
+          "name": "_z_fans_email_unique",
           "nullsNotDistinct": false,
           "columns": [
             "email"
@@ -155,8 +155,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.favorites": {
-      "name": "favorites",
+    "public._z_favorites": {
+      "name": "_z_favorites",
       "schema": "",
       "columns": {
         "id": {
@@ -186,10 +186,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "favorites_fan_id_fans_id_fk": {
-          "name": "favorites_fan_id_fans_id_fk",
-          "tableFrom": "favorites",
-          "tableTo": "fans",
+        "_z_favorites_fan_id__z_fans_id_fk": {
+          "name": "_z_favorites_fan_id__z_fans_id_fk",
+          "tableFrom": "_z_favorites",
+          "tableTo": "_z_fans",
           "columnsFrom": [
             "fan_id"
           ],
@@ -199,10 +199,10 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "favorites_album_id_albums_id_fk": {
-          "name": "favorites_album_id_albums_id_fk",
-          "tableFrom": "favorites",
-          "tableTo": "albums",
+        "_z_favorites_album_id__z_albums_id_fk": {
+          "name": "_z_favorites_album_id__z_albums_id_fk",
+          "tableFrom": "_z_favorites",
+          "tableTo": "_z_albums",
           "columnsFrom": [
             "album_id"
           ],
