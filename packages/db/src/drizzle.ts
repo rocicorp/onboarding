@@ -1,14 +1,14 @@
 import {relations} from 'drizzle-orm';
 import {integer, pgTable, text, timestamp} from 'drizzle-orm/pg-core';
 
-export const fans = pgTable('_z_fans', {
+export const fans = pgTable('fans', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   createdAt: timestamp('created_at').notNull(),
 });
 
-export const artists = pgTable('_z_artists', {
+export const artists = pgTable('artists', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   genre: text('genre').notNull(),
@@ -16,7 +16,7 @@ export const artists = pgTable('_z_artists', {
   createdAt: timestamp('created_at').notNull(),
 });
 
-export const albums = pgTable('_z_albums', {
+export const albums = pgTable('albums', {
   id: text('id').primaryKey(),
   title: text('title').notNull(),
   artistId: text('artist_id')
@@ -27,7 +27,7 @@ export const albums = pgTable('_z_albums', {
   createdAt: timestamp('created_at').notNull(),
 });
 
-export const favorites = pgTable('_z_favorites', {
+export const favorites = pgTable('favorites', {
   id: text('id').primaryKey(),
   fanId: text('fan_id')
     .notNull()
