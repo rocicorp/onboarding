@@ -1,6 +1,6 @@
 # Onboarding
 
-This repo is a small, self-contained playground for the Zero [installation](https://zero.rocicorp.dev/docs/install) and [deploy](https://zero.rocicorp.dev/docs/deploy) guides. It’s meant for experimenting when wiring Zero into your own project would be too much work.
+This repo is a small, self-contained playground for the Zero [installation](https://zero.rocicorp.dev/docs/install) and [deploy](https://zero.rocicorp.dev/docs/deploy) guides.
 
 ## Branches
 
@@ -18,7 +18,7 @@ This repo is a small, self-contained playground for the Zero [installation](http
 
 - Drizzle schema: [packages/db/src/drizzle.ts](packages/db/src/drizzle.ts)
 - Seed data: [./migrations/0000_seed_music.sql](migrations/0000_seed_music.sql)
-- Zero schema (generated on `maximal`): [packages/zero/src/schema.ts](packages/zero/src/schema.ts)
+- Zero schema: [packages/zero/src/schema.ts](packages/zero/src/schema.ts)
 - Queries + mutators: [packages/zero/src/queries.ts](packages/zero/src/queries.ts), [packages/zero/src/mutators.ts](packages/zero/src/mutators.ts)
 - Query/mutate endpoints: [apps/web/src/routes/api/query.ts](apps/web/src/routes/api/query.ts), [apps/web/src/routes/api/mutate.ts](apps/web/src/routes/api/mutate.ts)
 - Example client usage: [apps/web/src/routes/index.tsx](apps/web/src/routes/index.tsx)
@@ -32,11 +32,4 @@ Prereqs: Bun + Docker.
 - In one terminal, start Postgres (includes schema + seed data): `docker compose up`
 - In another terminal, start the web app: `bun dev`
 
-On `maximal`, the `zero-cache-dev` command will also be run when you run `bun dev`. It defaults to running on `http://localhost:4848` but can be configured via the `VITE_ZERO_SERVER` environment variable.
-
-## Trying your own schema
-
-If you want a working baseline to modify, start from `maximal`, then:
-
-- Edit `packages/db/src/drizzle.ts`
-- Re-generate the Zero schema: `bun generate`
+On `1-install`, the `zero-cache-dev` command will also be run when you run `bun dev`. It defaults to running on `http://localhost:4848` but can be configured via the `VITE_ZERO_SERVER` environment variable.
