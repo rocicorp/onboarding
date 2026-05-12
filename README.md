@@ -1,12 +1,12 @@
-# Onboarding
+# Zero Music
 
-This repo is a small, self-contained playground for the Zero [installation](https://zero.rocicorp.dev/docs/install) and [deploy](https://zero.rocicorp.dev/docs/deploy) guides.
+This repo is a small, self-contained playground for the Zero [tutorial](https://zero.rocicorp.dev/docs/tutorial).
 
 ## Branches
 
-- `0-start`: starting point (intentionally incomplete; you'll see `TODO`s - [view `0-start` on GitHub](https://github.com/rocicorp/onboarding/tree/0-start), or `git switch 0-start`)..
-- `1-install`: end state after completing the installation guide ([view `1-install` on GitHub](https://github.com/rocicorp/onboarding/tree/1-install), or `git switch 1-install`).
-- `2-deploy`: final state after adding Docker Compose ([view `2-deploy` on GitHub](https://github.com/rocicorp/onboarding/tree/2-deploy), or `git switch 2-deploy`).
+- `0-start`: starting point (intentionally incomplete; you'll see `TODO`s - [view `0-start` on GitHub](https://github.com/rocicorp/zero-music/tree/0-start), or `git switch 0-start`)..
+- `1-install`: end state after completing the installation guide ([view `1-install` on GitHub](https://github.com/rocicorp/zero-music/tree/1-install), or `git switch 1-install`).
+- `2-deploy`: final state after adding Docker Compose ([view `2-deploy` on GitHub](https://github.com/rocicorp/zero-music/tree/2-deploy), or `git switch 2-deploy`).
 
 ## Repo tour
 
