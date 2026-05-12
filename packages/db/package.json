@@ -1,5 +1,5 @@
 {
-  "name": "@zero-onboarding/db",
+  "name": "@zero-music/db",
   "module": "src/index.ts",
   "type": "module",
   "private": true,

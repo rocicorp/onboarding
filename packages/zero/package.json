@@ -1,5 +1,5 @@
 {
-  "name": "@zero-onboarding/zero",
+  "name": "@zero-music/zero",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
@@ -10,7 +10,7 @@
     "dev": "bun --env-file=../../.env -- zero-cache-dev"
   },
   "dependencies": {
-    "@zero-onboarding/db": "workspace:*",
+    "@zero-music/db": "workspace:*",
     "zod": "^4.4.1"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 {
-  "name": "zero-onboarding",
+  "name": "zero-music",
   "private": true,
   "workspaces": [
     "apps/*",
