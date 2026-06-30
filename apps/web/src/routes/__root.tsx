@@ -1,4 +1,6 @@
+import {ZeroProvider} from '@rocicorp/zero/react';
 import {HeadContent, Scripts, createRootRoute} from '@tanstack/react-router';
+import {mutators, schema} from '@zero-music/zero';
 import appCss from '../styles.css?url';
 
 export const Route = createRootRoute({
@@ -32,7 +34,13 @@ function RootDocument({children}: {children: React.ReactNode}) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <ZeroProvider
+          server={import.meta.env.VITE_ZERO_SERVER ?? 'http://localhost:4848'}
+          schema={schema}
+          mutators={mutators}
+        >
+          {children}
+        </ZeroProvider>
         <Scripts />
       </body>
     </html>
