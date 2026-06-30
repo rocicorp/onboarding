@@ -16,5 +16,8 @@
     "prettier": "^3.9.4",
     "typescript": "~6.0.3"
   },
-  "prettier": "@rocicorp/prettier-config"
+  "prettier": "@rocicorp/prettier-config",
+  "trustedDependencies": [
+    "@rocicorp/zero-sqlite3"
+  ]
 }
