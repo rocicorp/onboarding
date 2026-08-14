@@ -11,7 +11,7 @@
     "generate": "drizzle-zero generate -s ../db/src/drizzle.ts -o ./src/schema.ts -f"
   },
   "dependencies": {
-    "@rocicorp/zero": "1.7.0",
+    "@rocicorp/zero": "1.9.0-canary.10",
     "@zero-music/db": "workspace:*",
     "zod": "^4.4.1"
   },

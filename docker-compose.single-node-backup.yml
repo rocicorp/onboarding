@@ -53,7 +53,7 @@ services:
 
   zero-cache:
     # do not use "latest" in production - use a specific version tag
-    image: rocicorp/zero:latest
+    image: rocicorp/zero:1.9.0-canary.10
     ports:
       - 4848:4848
     environment:
