@@ -8,7 +8,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@rocicorp/zero": "1.9.0",
+    "@rocicorp/zero": "1.10.0-canary.17",
     "@tailwindcss/vite": "^4.3.2",
     "@tanstack/react-devtools": "^0.10.8",
     "@tanstack/react-router": "^1.170.17",
