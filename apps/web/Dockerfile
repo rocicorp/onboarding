@@ -1,4 +1,4 @@
-FROM oven/bun:1 AS builder
+FROM oven/bun:1.3.14 AS builder
 
 ARG VITE_ZERO_SERVER
 
@@ -9,14 +9,14 @@ COPY apps/web/package.json apps/web/package.json
 COPY packages/db/package.json packages/db/package.json
 COPY packages/zero/package.json packages/zero/package.json
 
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile --ignore-scripts
 
 COPY apps/web apps/web
 COPY packages packages
 
 RUN bun --filter @zero-music/web build
 
-FROM oven/bun:1 AS runner
+FROM oven/bun:1.3.14 AS runner
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0

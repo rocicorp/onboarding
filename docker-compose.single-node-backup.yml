@@ -53,7 +53,7 @@ services:
 
   zero-cache:
     # do not use "latest" in production - use a specific version tag
-    image: rocicorp/zero:1.9.0
+    image: rocicorp/zero:1.10.0-canary.17
     ports:
       - 4848:4848
     environment:
@@ -78,8 +78,6 @@ services:
     volumes:
       # disk for the SQLite replica should be high IOPS
       - ./.docker/single-node-with-backup/zero-cache:/data
-      # TODO remove once litestream config is fixed
-      - ./litestream.minio.yml:/etc/litestream.yml:ro
     depends_on:
       upstream-db:
         condition: service_healthy
